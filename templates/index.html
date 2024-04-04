@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}
+Soccer Jersey Store - Home
+{% endblock %}
+
+{% block body %}
+<!-- Main Store Body -->
+<!-- Main Store Body -->
+<h2 class="title">Products List</h2>
+
+<div class="container">
+    <div class="row align-items-stretch">
+        <!-- find box-->
+        <div class="col-sm-9">
+            <form action="/find/" method="POST">
+                <div class="input-group mb-3" style="width: 100%;">
+                    <input type="text" class="form-control" style="border: 1px solid #ff523b;" name="team" placeholder="Search by team name" aria-label="Search by team name" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Filter box-->
+        <div class="col-sm-3">
+            <form action="/filter2/" method="POST">
+                <div class="input-group mb-3" style="width: 100%;">
+                    <select class="custom-select" style="align-self: center; height: 40px; border: 1px solid #ff523b;" name="filtertype">
+                        <option selected>Choose Type</option>
+                        <option value="europe">Europe</option>
+                        <option value="americas">Americas</option>
+                        <option value="africa">Africa</option>
+                        <option value="club">Club</option>
+                        <option value="national">National</option>
+                        <option value="sale">Sale</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline" type="submit" id="button-addon2">Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="shirtCard">
+    {% for i in range(shirtsLen) %}
+    <div class="col-sm">
+        <div class="card text-center">
+            <div class="card-body">
+                <form action="/buy/" methods="POST">
+                    <img src="/static/img/{{shirts[i]["image"]}}" class="shirt" alt="" />
+                    <h5 class="card-title">{{shirts[i]["team"]}}</h5>
+                    {% if shirts[i]["onSale"] %}
+                      <img src="/static/img/sale-icon.png" width="26px" />
+                      <h4 class="card-text price" style="color:red; display:inline">{{ '{:,.2f}'.format(shirts[i]["onSalePrice"]) }}</h4>
+                    {% else %}
+                      <h4 class="card-text price">{{ '{:,.2f}'.format(shirts[i]["price"]) }}</h4>
+                    {% endif %}
+                    <div class="stepper-input">
+                        <span class="decrement target">-</span>
+                        <input class="quantity" name="quantity" value='0' />
+                        <span class="increment target">+</span>
+                    </div>
+                    <input type="hidden" name="id" value="{{shirts[i]["id"]}}" />
+                    {% if not session %}
+                    <input type="hidden" name="loggedin" value="0" />
+                    {% else %}
+                    <input type="hidden" name="loggedin" value="1" />
+                    {% endif %}
+                    <input type="submit" class="btn btn-primary addToCart" value="Add To Cart" /><br /><br />
+                    <div class="alert alert-danger flashMessage" style="text-align: center; display:none; font-size:0.9em;"></div>
+                  </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+</main>
+
+  <script>
+    function validateQuantity(form) {
+        var quantity = form.querySelector('.quantity').value;
+        if (quantity == 0) {
+            var alertBox = form.querySelector('.flashMessage');
+            alertBox.innerHTML = 'Quantity must be greater than 0.';
+            alertBox.style.display = 'block';
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+
+    // check login status when click add to cart
+    document.querySelectorAll('.btn').forEach(item => {
+        item.addEventListener('click', event => {
+            var alertBox = item.parentElement.querySelector('.flashMessage');
+            if (item.parentElement.querySelector('input[name="loggedin"]').value == 0) {
+                alertBox.innerHTML = 'Please login to add to cart.';
+                alertBox.style.display = 'block';
+                event.preventDefault();
+            }
+        });
+    });
+    
+    // remove flash message when click increment or decrement quantity or wait for 3 seconds
+    document.querySelectorAll('.target').forEach(item => {
+        item.addEventListener('click', event => {
+            var alertBox = item.parentElement.parentElement.querySelector('.flashMessage');
+            alertBox.style.display = 'none';
+        });
+    });
+
+</script>
+{% endblock %}
