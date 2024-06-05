@@ -27,13 +27,13 @@ python application.py
 - HTML, CSS, JavaScript
 
 ## Screenshots
-<div style="text-align: center;">
-  <img src="https://github.com/CongLiv/flask-fullstack-ecommerce/assets/116829489/460e9741-4d20-45e1-85da-83d0fa393a60" alt="screenshot_1" width="600"/>
-  <img src="https://github.com/CongLiv/flask-fullstack-ecommerce/assets/116829489/87b8ec97-976a-4abb-a9cc-097d35f00453" alt="screenshot_2" width="600"/>
-  <img src="https://github.com/CongLiv/flask-fullstack-ecommerce/assets/116829489/879ed73c-a4d4-45e6-a96d-6db023fa5ae4" alt="screenshot_3" width="600"/>
-  <img src="https://github.com/CongLiv/flask-fullstack-ecommerce/assets/116829489/e7282664-0193-4f69-b103-46db6accb1e0" alt="screenshot_4" width="600"/>
+<p align = "center">
+  <img src="https://github.com/CongLiv/flask-fullstack-ecommerce/assets/116829489/460e9741-4d20-45e1-85da-83d0fa393a60" alt="screenshot_1" width="600"/></br>
+  <img src="https://github.com/CongLiv/flask-fullstack-ecommerce/assets/116829489/87b8ec97-976a-4abb-a9cc-097d35f00453" alt="screenshot_2" width="600"/></br>
+  <img src="https://github.com/CongLiv/flask-fullstack-ecommerce/assets/116829489/879ed73c-a4d4-45e6-a96d-6db023fa5ae4" alt="screenshot_3" width="600"/></br>
+  <img src="https://github.com/CongLiv/flask-fullstack-ecommerce/assets/116829489/e7282664-0193-4f69-b103-46db6accb1e0" alt="screenshot_4" width="600"/></br>
 
-</div>
+</p>
 
 
 
